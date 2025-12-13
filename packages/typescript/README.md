@@ -1,5 +1,8 @@
 # @plysrh88/authflow
 
+[![npm version](https://badge.fury.io/js/@plysrh88%2Fauthflow.svg)](https://www.npmjs.com/package/@plysrh88/authflow)
+[![TypeScript](https://img.shields.io/badge/TypeScript-Ready-blue.svg)](https://www.typescriptlang.org/)
+
 A unified authentication SDK for TypeScript/JavaScript supporting multiple OAuth providers.
 
 ## Installation
@@ -40,6 +43,8 @@ console.log(user) // { id, email, name, avatar, provider }
 - ⚡ **TypeScript first** with full type safety
 - 🏗️ **Modular architecture** with provider-specific implementations
 - 🔧 **Configurable** with environment variables support
+- 📚 **Comprehensive JSDoc documentation**
+- ✅ **Fully tested** with unit and integration tests
 
 ## Supported Providers
 
@@ -65,29 +70,67 @@ const auth = new AuthFlow(config: AuthConfig)
 
 ```typescript
 interface User {
-  id: string
-  email: string
-  name: string
-  avatar?: string
-  provider: Provider
+  id: string;
+  email: string;
+  name: string;
+  avatar?: string;
+  provider: Provider;
 }
 
-type Provider = 'github' | 'google'
+type Provider = 'github' | 'google';
 
 interface AuthConfig {
-  github?: GitHubConfig
-  google?: GoogleConfig
+  github?: GitHubConfig;
+  google?: GoogleConfig;
 }
 
 interface GitHubConfig {
-  clientId: string
-  clientSecret: string
-  redirectUri?: string
+  clientId: string;
+  clientSecret: string;
+  redirectUri?: string;
 }
 
 interface GoogleConfig {
-  clientId: string
-  clientSecret: string
-  redirectUri?: string
+  clientId: string;
+  clientSecret: string;
+  redirectUri?: string;
+}
+```
+
+## Examples
+
+### React Integration
+
+```typescript
+import { useState, useEffect } from 'react';
+import { AuthFlow } from '@plysrh88/authflow';
+
+function LoginComponent() {
+  const [auth] = useState(() => new AuthFlow({
+    github: {
+      clientId: process.env.VITE_GITHUB_CLIENT_ID!,
+      clientSecret: process.env.VITE_GITHUB_CLIENT_SECRET!,
+      redirectUri: process.env.VITE_GITHUB_REDIRECT_URI,
+    }
+  }))
+
+  const handleLogin = () => {
+    const url = auth.getLoginUrl('github');
+
+    window.location.href = url;
+  }
+
+  useEffect(() => {
+    const params = new URLSearchParams(window.location.search);
+    const code = params.get('code');
+    
+    if (code) {
+      auth.handleCallback('github', code)
+        .then(user => console.log('Logged in:', user))
+        .catch(err => console.error('Login failed:', err));
+    }
+  }, []);
+
+  return <button onClick={handleLogin}>Login with GitHub</button>;
 }
 ```

@@ -8,7 +8,7 @@ vi.mock('@plysrh88/authflow', () => ({
   },
 }));
 
-import { ROUTES } from './constants.spec';
+import { ROUTES } from './utils.spec';
 import { renderWithFullRouter } from './components.spec';
 
 describe('App Routing', () => {

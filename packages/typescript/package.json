@@ -1,6 +1,6 @@
 {
   "name": "@plysrh88/authflow",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "Unified authentication SDK for TypeScript/JavaScript",
   "type": "module",
   "main": "dist/index.js",

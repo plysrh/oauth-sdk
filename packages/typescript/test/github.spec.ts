@@ -1,25 +1,23 @@
 import { describe, it, expect, vi, beforeEach } from 'vitest';
 import { GitHubProvider } from '../src/modules/github';
-
-// Mock fetch
-global.fetch = vi.fn();
+import { MOCK_CONFIG, URLS, MOCK_RESPONSES, MOCK_TOKENS } from './utils.spec';
 
 describe('GitHubProvider', () => {
   let provider: GitHubProvider;
 
   beforeEach(() => {
     provider = new GitHubProvider({
-      clientId: 'test-client-id',
-      clientSecret: 'test-client-secret',
+      clientId: MOCK_CONFIG.GITHUB.CLIENT_ID,
+      clientSecret: MOCK_CONFIG.GITHUB.CLIENT_SECRET,
+      redirectUri: MOCK_CONFIG.GITHUB.REDIRECT_URL,
     });
-    vi.clearAllMocks();
   });
 
   describe('getLoginUrl', () => {
     it('should generate correct login URL', () => {
       const url = provider.getLoginUrl();
-      expect(url).toContain('https://github.com/login/oauth/authorize');
-      expect(url).toContain('client_id=test-client-id');
+      expect(url).toContain(URLS.GITHUB_AUTHORIZE);
+      expect(url).toContain(`client_id=${MOCK_CONFIG.GITHUB.CLIENT_ID}`);
       expect(url).toContain('scope=user%3Aemail');
     });
 
@@ -31,19 +29,14 @@ describe('GitHubProvider', () => {
 
   describe('exchangeCodeForToken', () => {
     it('should exchange code for access token', async () => {
-      const mockResponse = {
-        access_token: 'test-token',
-        token_type: 'bearer',
-      };
-
       vi.mocked(fetch).mockResolvedValueOnce({
-        json: () => Promise.resolve(mockResponse),
+        json: () => Promise.resolve(MOCK_RESPONSES.GITHUB.TOKEN),
       } as Response);
 
-      const result = await provider.exchangeCodeForToken('test-code');
+      const result = await provider.exchangeCodeForToken(MOCK_TOKENS.AUTH_CODE);
 
       expect(fetch).toHaveBeenCalledWith(
-        'https://github.com/login/oauth/access_token',
+        URLS.GITHUB_TOKEN,
         expect.objectContaining({
           method: 'POST',
           headers: expect.objectContaining({
@@ -53,41 +46,29 @@ describe('GitHubProvider', () => {
       );
 
       expect(result).toEqual({
-        accessToken: 'test-token',
-        tokenType: 'bearer',
+        accessToken: MOCK_RESPONSES.GITHUB.TOKEN.access_token,
+        tokenType: MOCK_RESPONSES.GITHUB.TOKEN.token_type,
       });
     });
   });
 
   describe('getUserInfo', () => {
     it('should fetch user information', async () => {
-      const mockUserData = {
-        id: 123,
-        login: 'testuser',
-        name: 'Test User',
-        email: 'test@example.com',
-        avatar_url: 'https://avatar.url',
-      };
-
-      const mockEmailData = [
-        { email: 'test@example.com', primary: true },
-      ];
-
       vi.mocked(fetch)
         .mockResolvedValueOnce({
-          json: () => Promise.resolve(mockUserData),
+          json: () => Promise.resolve(MOCK_RESPONSES.GITHUB.USER),
         } as Response)
         .mockResolvedValueOnce({
-          json: () => Promise.resolve(mockEmailData),
+          json: () => Promise.resolve(MOCK_RESPONSES.GITHUB.EMAIL),
         } as Response);
 
-      const result = await provider.getUserInfo('test-token');
+      const result = await provider.getUserInfo(MOCK_TOKENS.ACCESS_TOKEN);
 
       expect(result).toEqual({
-        id: '123',
-        email: 'test@example.com',
-        name: 'Test User',
-        avatar: 'https://avatar.url',
+        id: MOCK_RESPONSES.GITHUB.USER.id.toString(),
+        email: MOCK_RESPONSES.GITHUB.EMAIL[0].email,
+        name: MOCK_RESPONSES.GITHUB.USER.name,
+        avatar: MOCK_RESPONSES.GITHUB.USER.avatar_url,
         provider: 'github',
       });
     });

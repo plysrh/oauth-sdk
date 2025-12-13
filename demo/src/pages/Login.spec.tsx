@@ -1,6 +1,6 @@
 import { describe, it, expect, vi } from 'vitest';
 import { screen, fireEvent, waitFor } from '@testing-library/react';
-import { MOCK_URLS, MOCK_USER } from '../constants.spec';
+import { MOCK_URLS, MOCK_USER } from '../utils.spec';
 
 vi.mock('@plysrh88/authflow', () => ({
   AuthFlow: class MockAuthFlow {
@@ -21,7 +21,7 @@ vi.mock('@plysrh88/authflow', () => ({
 }));
 
 import Login from './Login';
-import { TEST_ROUTES } from '../constants.spec';
+import { MOCK_ROUTES } from '../utils.spec';
 import { renderWithRouter } from '../components.spec';
 
 describe('Login Component', () => {
@@ -47,7 +47,7 @@ describe('Login Component', () => {
   });
 
   it('should handle OAuth callback with search params', async () => {
-    renderWithRouter(<Login />, [TEST_ROUTES.CALLBACK_WITH_PARAMS]);
+    renderWithRouter(<Login />, [MOCK_ROUTES.CALLBACK_WITH_PARAMS]);
 
     expect(screen.getByText('Authenticating...')).toBeInTheDocument();
 

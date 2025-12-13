@@ -22,8 +22,16 @@ npm install
 
 ```bash
 cp .env.example .env
-# Edit .env with your real client IDs
+# Edit .env with your real client IDs and redirect URIs
 ```
+
+**Required variables:**
+- `VITE_GITHUB_CLIENT_ID` - GitHub OAuth app client ID
+- `VITE_GITHUB_CLIENT_SECRET` - GitHub OAuth app client secret
+- `VITE_GITHUB_REDIRECT_URI` - GitHub OAuth redirect URI
+- `VITE_GOOGLE_CLIENT_ID` - Google OAuth app client ID
+- `VITE_GOOGLE_CLIENT_SECRET` - Google OAuth app client secret
+- `VITE_GOOGLE_REDIRECT_URI` - Google OAuth redirect URI
 
 3. **Configure OAuth Apps:**
 
@@ -57,8 +65,10 @@ Visit: http://localhost:5173
 2. **Configure environment variables** in Vercel:
    - `VITE_GITHUB_CLIENT_ID`
    - `VITE_GITHUB_CLIENT_SECRET`
+   - `VITE_GITHUB_REDIRECT_URI`
    - `VITE_GOOGLE_CLIENT_ID`
    - `VITE_GOOGLE_CLIENT_SECRET`
+   - `VITE_GOOGLE_REDIRECT_URI`
 
 3. **Update OAuth Apps** with production URLs:
    - GitHub: `https://your-app.vercel.app/`

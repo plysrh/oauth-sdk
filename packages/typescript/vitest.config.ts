@@ -4,5 +4,7 @@ export default defineConfig({
   test: {
     globals: true,
     environment: 'node',
+    exclude: ['test/utils.spec.ts'],
+    setupFiles: ['vitest.setup.ts'],
   },
 });

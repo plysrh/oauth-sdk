@@ -7,10 +7,12 @@ const auth = new AuthFlow({
   github: {
     clientId: AUTH_CONFIG.GITHUB.CLIENT_ID,
     clientSecret: AUTH_CONFIG.GITHUB.CLIENT_SECRET,
+    redirectUri: AUTH_CONFIG.GITHUB.REDIRECT_URI,
   },
   google: {
     clientId: AUTH_CONFIG.GOOGLE.CLIENT_ID,
     clientSecret: AUTH_CONFIG.GOOGLE.CLIENT_SECRET,
+    redirectUri: AUTH_CONFIG.GOOGLE.REDIRECT_URI,
   },
 });
 
