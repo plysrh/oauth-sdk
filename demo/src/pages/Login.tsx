@@ -1,7 +1,5 @@
-import { useState, useEffect, useCallback } from 'react';
-import { AuthFlow, type User, type Provider } from '@plysrh88/authflow';
-import { useNavigate, useSearchParams } from 'react-router-dom';
-import { ROUTES, AUTH_CONFIG } from '../constants';
+import { AuthFlow, type Provider } from '@plysrh88/authflow';
+import { AUTH_CONFIG } from '../constants';
 
 const auth = new AuthFlow({
   github: {
@@ -17,50 +15,11 @@ const auth = new AuthFlow({
 });
 
 export default function Login() {
-  const [user, setUser] = useState<User | null>(null);
-  const [loading, setLoading] = useState(false);
-  const navigate = useNavigate();
-  const [searchParams] = useSearchParams();
-
-  const handleOAuthCallback = useCallback(async (code: string, provider: Provider) => {
-    setLoading(true);
-    try {
-      const user = await auth.handleCallback(provider, code);
-
-      setUser(user);
-      navigate(ROUTES.HOME);
-    } catch {
-      navigate(ROUTES.ERROR);
-    } finally {
-      setLoading(false);
-    }
-  }, [navigate]);
-
-  useEffect(() => {
-    const code = searchParams.get('code');
-    const provider = (searchParams.get('state') as Provider) || 'github';
-
-    if (code && !user) {
-      handleOAuthCallback(code, provider);
-    }
-  }, [user, searchParams, handleOAuthCallback]);
-
   const handleLogin = (provider: Provider) => {
     const loginUrl = auth.getLoginUrl(provider, provider);
 
     window.location.assign(loginUrl);
   };
-
-  if (loading) {
-    return (
-      <div className="min-h-screen bg-gray-50 flex items-center justify-center">
-        <div className="text-center">
-          <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-600 mx-auto"></div>
-          <p className="mt-4 text-gray-600">Authenticating...</p>
-        </div>
-      </div>
-    )
-  }
 
   return (
     <div className="min-h-screen bg-gray-50 flex items-center justify-center">

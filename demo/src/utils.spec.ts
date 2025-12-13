@@ -5,7 +5,7 @@ export const MOCK_URLS = {
   GOOGLE: 'https://mock-google-url.com',
 } as const;
 export const MOCK_ROUTES = {
-  CALLBACK_WITH_PARAMS: '/?code=test-code&state=github',
+  CALLBACK_WITH_PARAMS: '/oauth/callback?code=test-code&state=github',
 } as const;
 export const MOCK_USER = {
   ID: '123',

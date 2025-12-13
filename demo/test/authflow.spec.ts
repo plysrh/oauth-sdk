@@ -59,7 +59,7 @@ test.describe('AuthFlow Demo', () => {
 
   test('should handle OAuth callback and display user info', async ({ page }) => {
     await setupOAuthMocks(page);
-    await page.goto('/?code=mock_code&state=github');
+    await page.goto('/oauth/callback?code=mock_code&state=github');
 
     await expect(page).toHaveURL('/home');
     await expect(page.getByText('Hello, World!')).toBeVisible();
@@ -67,7 +67,7 @@ test.describe('AuthFlow Demo', () => {
 
   test('should handle authentication error and redirect to error page', async ({ page }) => {
     await setupOAuthErrorMocks(page);
-    await page.goto('/?code=invalid_code&state=github');
+    await page.goto('/oauth/callback?code=invalid_code&state=github');
 
     await expect(page).toHaveURL('/error');
     await expect(page.getByText('Error')).toBeVisible();
@@ -94,7 +94,7 @@ test.describe('AuthFlow Demo', () => {
 
   test('should handle Google OAuth callback', async ({ page }) => {
     await setupOAuthMocks(page);
-    await page.goto('/?code=mock_google_code&state=google');
+    await page.goto('/oauth/callback?code=mock_google_code&state=google');
 
     await expect(page).toHaveURL('/home');
     await expect(page.getByText('Hello, World!')).toBeVisible();
@@ -102,7 +102,7 @@ test.describe('AuthFlow Demo', () => {
 
   test('should show loading state during authentication', async ({ page }) => {
     await setupSlowOAuthMocks(page);
-    await page.goto('/?code=mock_code&state=github');
+    await page.goto('/oauth/callback?code=mock_code&state=github');
 
     await expect(page.getByText('Authenticating...')).toBeVisible();
   });

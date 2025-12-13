@@ -6,6 +6,7 @@ import Login from './pages/Login';
 import Home from './pages/Home';
 import Error from './pages/Error';
 import NotFound from './pages/NotFound';
+import Callback from './pages/Callback';
 
 export const renderWithRouter = (component: ReactElement, initialEntries: string[] = [ROUTES.LOGIN]) => {
   return render(
@@ -22,6 +23,7 @@ export const renderWithFullRouter = (initialEntries: string[] = [ROUTES.LOGIN]) 
         <Route path={ROUTES.LOGIN} element={<Login />} />
         <Route path={ROUTES.HOME} element={<Home />} />
         <Route path={ROUTES.ERROR} element={<Error />} />
+        <Route path={ROUTES.CALLBACK} element={<Callback />} />
         <Route path="*" element={<NotFound />} />
       </Routes>
     </MemoryRouter>

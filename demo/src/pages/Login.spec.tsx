@@ -1,5 +1,5 @@
 import { describe, it, expect, vi } from 'vitest';
-import { screen, fireEvent, waitFor } from '@testing-library/react';
+import { screen, fireEvent } from '@testing-library/react';
 import { MOCK_URLS, MOCK_USER } from '../utils.spec';
 
 vi.mock('@plysrh88/authflow', () => ({
@@ -21,7 +21,6 @@ vi.mock('@plysrh88/authflow', () => ({
 }));
 
 import Login from './Login';
-import { MOCK_ROUTES } from '../utils.spec';
 import { renderWithRouter } from '../components.spec';
 
 describe('Login Component', () => {
@@ -44,15 +43,5 @@ describe('Login Component', () => {
     fireEvent.click(screen.getByText('Continue with Google'));
 
     expect(window.location.assign).toHaveBeenCalledWith(MOCK_URLS.GOOGLE);
-  });
-
-  it('should handle OAuth callback with search params', async () => {
-    renderWithRouter(<Login />, [MOCK_ROUTES.CALLBACK_WITH_PARAMS]);
-
-    expect(screen.getByText('Authenticating...')).toBeInTheDocument();
-
-    await waitFor(() => {
-      expect(screen.queryByText('Authenticating...')).not.toBeInTheDocument();
-    });
   });
 });
