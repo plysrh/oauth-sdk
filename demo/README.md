@@ -26,6 +26,7 @@ cp .env.example .env
 ```
 
 **Required variables:**
+
 - `VITE_GITHUB_CLIENT_ID` - GitHub OAuth app client ID
 - `VITE_GITHUB_CLIENT_SECRET` - GitHub OAuth app client secret
 - `VITE_GITHUB_REDIRECT_URI` - GitHub OAuth redirect URI
@@ -51,13 +52,13 @@ cp .env.example .env
 npm run dev
 ```
 
-Visit: http://localhost:5173
+Visit: http://localhost:5173/
 
 ## Deploy on Vercel
 
 ### 1. Automatic Setup
 
-[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https://github.com/plysrh88/authflow-sdk&project-name=authflow-demo&repository-name=authflow-sdk)
+[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https://github.com/plysrh/authflow-sdk&project-name=authflow-demo&repository-name=authflow-sdk)
 
 ### 2. Manual Setup
 
