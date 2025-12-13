@@ -1,0 +1,2 @@
+# This file ensures the golang directory is tracked by git
+# Remove this file when adding actual Go SDK implementation

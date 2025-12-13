@@ -1,0 +1,10 @@
+src/
+test/
+*.spec.ts
+*.test.ts
+tsconfig.json
+vitest.config.ts
+node_modules/
+.git/
+.gitignore
+.npmrc

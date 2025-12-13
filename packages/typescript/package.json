@@ -1,0 +1,61 @@
+{
+  "name": "@plysrh88/authflow",
+  "version": "1.0.1",
+  "description": "Unified authentication SDK for TypeScript/JavaScript",
+  "type": "module",
+  "main": "dist/index.js",
+  "module": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "exports": {
+    ".": {
+      "import": "./dist/index.js",
+      "types": "./dist/index.d.ts"
+    }
+  },
+  "files": [
+    "dist/**/*",
+    "README.md"
+  ],
+  "scripts": {
+    "build": "tsc",
+    "dev": "tsc --watch",
+    "test": "vitest run",
+    "lint": "eslint .",
+    "prepublishOnly": "npm run build && npm test"
+  },
+  "keywords": [
+    "auth",
+    "oauth",
+    "sdk",
+    "typescript",
+    "github",
+    "google",
+    "authentication"
+  ],
+  "author": "Sebastian Rodriguez <ply.srh@gmail.com>",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/plysrh/authflow-sdk.git",
+    "directory": "packages/typescript"
+  },
+  "homepage": "https://github.com/plysrh/authflow-sdk#readme",
+  "bugs": {
+    "url": "https://github.com/plysrh/authflow-sdk/issues"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "engines": {
+    "node": ">=16.0.0"
+  },
+  "devDependencies": {
+    "@eslint/js": "^9.39.1",
+    "@types/node": "^20.0.0",
+    "eslint": "^9.39.1",
+    "globals": "^16.5.0",
+    "typescript": "^5.0.0",
+    "typescript-eslint": "^8.46.4",
+    "vitest": "^1.0.0"
+  }
+}
