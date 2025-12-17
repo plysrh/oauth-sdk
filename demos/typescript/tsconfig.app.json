@@ -9,11 +9,6 @@
       "DOM.Iterable"
     ],
     "module": "ESNext",
-    "types": [
-      "vite/client",
-      "vitest/globals",
-      "@testing-library/jest-dom"
-    ],
     "skipLibCheck": true,
     /* Bundler mode */
     "moduleResolution": "bundler",
@@ -32,7 +27,6 @@
   },
   "include": [
     "src",
-    "vitest.types.d.ts",
-    "api"
+    "vitest.setup.ts"
   ]
 }

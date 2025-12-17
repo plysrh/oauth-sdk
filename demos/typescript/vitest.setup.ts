@@ -1,9 +1,7 @@
-import { vi, beforeAll, afterAll, afterEach, expect } from 'vitest';
+import { vi, beforeAll, afterAll, afterEach } from 'vitest';
 import { cleanup } from '@testing-library/react';
-import * as matchers from '@testing-library/jest-dom/matchers';
+import '@testing-library/jest-dom/vitest';
 import { BACKEND_ENDPOINTS } from './src/constants';
-
-expect.extend(matchers);
 
 const originalLocation = window.location;
 

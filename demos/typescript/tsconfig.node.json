@@ -25,10 +25,6 @@
     "noUncheckedSideEffectImports": true
   },
   "include": [
-    "api/**/***/*",
-    "playwright.config.ts",
-    "vite.config.ts",
-    "vitest.config.ts",
-    "vitest.setup.ts"
+    "api/**/*.ts"
   ]
 }
