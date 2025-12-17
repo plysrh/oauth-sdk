@@ -27,14 +27,14 @@ cp .env.example .env
 
 **Required variables:**
 
-- `VITE_GITHUB_CLIENT_ID` - GitHub OAuth app client ID
-- `VITE_GITHUB_CLIENT_SECRET` - GitHub OAuth app client secret
-- `VITE_GITHUB_REDIRECT_URI` - GitHub OAuth redirect URI
-- `VITE_GOOGLE_CLIENT_ID` - Google OAuth app client ID
-- `VITE_GOOGLE_CLIENT_SECRET` - Google OAuth app client secret
-- `VITE_GOOGLE_REDIRECT_URI` - Google OAuth redirect URI
+- `GITHUB_CLIENT_ID` - GitHub OAuth app client ID
+- `GITHUB_CLIENT_SECRET` - GitHub OAuth app client secret
+- `GITHUB_REDIRECT_URI` - GitHub OAuth redirect URI
+- `GOOGLE_CLIENT_ID` - Google OAuth app client ID
+- `GOOGLE_CLIENT_SECRET` - Google OAuth app client secret
+- `GOOGLE_REDIRECT_URI` - Google OAuth redirect URI
 
-3. **Configure OAuth Apps:**
+1. **Configure OAuth Apps:**
 
 ### GitHub OAuth App
 
@@ -49,7 +49,7 @@ cp .env.example .env
 4. **Run:**
 
 ```bash
-npm run dev
+npm run vercel:dev
 ```
 
 Visit: http://localhost:5173/
@@ -58,7 +58,7 @@ Visit: http://localhost:5173/
 
 ### 1. Automatic Setup
 
-[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https://github.com/plysrh/oauth-sdk&project-name=oauth-demo-typescript&repository-name=oauth-sdk)
+[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https://github.com/plysrh/oauth-sdk&project-name=oauth-sdk-demo-typescript&repository-name=oauth-sdk)
 
 ### 2. Manual Setup
 
@@ -73,7 +73,7 @@ Visit: http://localhost:5173/
 
 3. **Update OAuth Apps** with production URLs:
 
-   - GitHub: `https://oauth-demo-typescript.vercel.app/`
+   - GitHub: `https://oauth-sdk-demo-typescript.vercel.app/`
    - Google: `https://your-app.vercel.app/`
 
 ### 3. Advanced Configuration

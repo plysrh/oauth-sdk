@@ -23,8 +23,5 @@
     "erasableSyntaxOnly": true,
     "noFallthroughCasesInSwitch": true,
     "noUncheckedSideEffectImports": true
-  },
-  "include": [
-    "api/**/*.ts"
-  ]
+  }
 }

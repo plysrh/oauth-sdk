@@ -3,21 +3,22 @@
   "private": true,
   "version": "1.0.0",
   "engines": {
-    "node": "2.x"
+    "node": "24.x"
   },
   "type": "module",
   "scripts": {
-    "dev": "vite",
-    "backend": "vercel dev --local-config=./vercel.json",
-    "backend:mock": "node -r ts-node/register backend/mock.ts",
     "build": "tsc -b && vite build",
+    "dev": "vite",
     "lint": "eslint .",
     "preview": "vite preview",
     "test": "vitest",
     "test:ci": "vitest run",
     "test:ui": "vitest --ui",
     "test:e2e": "playwright test",
-    "test:e2e:ui": "playwright test --ui"
+    "test:e2e:mock": "node -r ts-node/register api/mock.ts",
+    "test:e2e:ui": "playwright test --ui",
+    "vercel:build": "vercel build",
+    "vercel:dev": "vercel dev"
   },
   "dependencies": {
     "@plysrh88/oauth-sdk": "^1.0.0",
