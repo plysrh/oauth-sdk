@@ -6,5 +6,5 @@ export const ROUTES = {
   CALLBACK: '/oauth/callback',
 } as const;
 export const BACKEND_ENDPOINTS = {
-  OAUTH: '/oauth/backend',
+  OAUTH: '/api/oauth',
 } as const;

@@ -29,7 +29,7 @@ describe('Login Component', () => {
     fireEvent.click(screen.getByText('Continue with GitHub'));
 
     expect(globalThis.fetch).toHaveBeenCalledWith(
-      '/oauth/backend',
+      '/api/oauth',
       {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },

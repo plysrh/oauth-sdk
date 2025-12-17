@@ -2,15 +2,7 @@
   "$schema": "https://openapi.vercel.sh/vercel.json",
   "rewrites": [
     {
-      "source": "/api/oauth",
-      "destination": "/api/oauth"
-    },
-    {
-      "source": "/api/oauth.ts",
-      "destination": "/api/oauth"
-    },
-    {
-      "source": "/((?!api\/oauth).*)",
+      "source": "/((?!api).*)",
       "destination": "/index.html"
     }
   ]

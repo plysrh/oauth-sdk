@@ -25,7 +25,7 @@ describe('Callback Component', () => {
 
     waitFor(() => {
       expect(globalThis.fetch).toHaveBeenCalledWith(
-        '/oauth/backend',
+        '/api/oauth',
         {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
