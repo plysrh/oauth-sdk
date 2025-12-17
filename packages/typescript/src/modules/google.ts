@@ -1,5 +1,5 @@
-import { GoogleConfig, User, TokenResponse, AuthProvider } from '../types';
-import { GOOGLE_URLS, DEFAULT_REDIRECT_URI, SCOPES, TOKEN_TYPES, GRANT_TYPES, RESPONSE_TYPES } from '../constants';
+import type { GoogleConfig, User, TokenResponse, AuthProvider } from '../types';
+import { OAUTH_URLS, DEFAULT_REDIRECT_URI, SCOPES, TOKEN_TYPES, GRANT_TYPES, RESPONSE_TYPES } from '../constants';
 
 /**
  * Google OAuth provider implementation.
@@ -34,7 +34,7 @@ export class GoogleProvider implements AuthProvider {
       ...(state && { state }),
     });
 
-    return `${GOOGLE_URLS.AUTHORIZE}?${params}`;
+    return `${OAUTH_URLS.GOOGLE_AUTHORIZE}?${params}`;
   }
 
   /**
@@ -44,7 +44,7 @@ export class GoogleProvider implements AuthProvider {
    * @throws Error if token exchange fails
    */
   async exchangeCodeForToken(code: string): Promise<TokenResponse> {
-    const response = await fetch(GOOGLE_URLS.TOKEN, {
+    const response = await fetch(OAUTH_URLS.GOOGLE_TOKEN, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/x-www-form-urlencoded',
@@ -77,7 +77,7 @@ export class GoogleProvider implements AuthProvider {
    * @throws Error if API request fails
    */
   async getUserInfo(accessToken: string): Promise<User> {
-    const response = await fetch(GOOGLE_URLS.USER_INFO, {
+    const response = await fetch(OAUTH_URLS.GOOGLE_USER_INFO, {
       headers: { Authorization: `Bearer ${accessToken}` },
     });
     const data = await response.json();

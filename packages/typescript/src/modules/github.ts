@@ -1,5 +1,5 @@
-import { GitHubConfig, User, TokenResponse, AuthProvider } from '../types';
-import { GITHUB_URLS, DEFAULT_REDIRECT_URI, SCOPES, TOKEN_TYPES } from '../constants';
+import type { GitHubConfig, User, TokenResponse, AuthProvider } from '../types';
+import { OAUTH_URLS, DEFAULT_REDIRECT_URI, SCOPES, TOKEN_TYPES } from '../constants';
 
 /**
  * GitHub OAuth provider implementation.
@@ -33,7 +33,7 @@ export class GitHubProvider implements AuthProvider {
       ...(state && { state }),
     });
 
-    return `${GITHUB_URLS.AUTHORIZE}?${params}`;
+    return `${OAUTH_URLS.GITHUB_AUTHORIZE}?${params}`;
   }
 
   /**
@@ -43,7 +43,7 @@ export class GitHubProvider implements AuthProvider {
    * @throws Error if token exchange fails
    */
   async exchangeCodeForToken(code: string): Promise<TokenResponse> {
-    const response = await fetch(GITHUB_URLS.TOKEN, {
+    const response = await fetch(OAUTH_URLS.GITHUB_TOKEN, {
       method: 'POST',
       headers: {
         'Accept': 'application/json',
@@ -74,10 +74,10 @@ export class GitHubProvider implements AuthProvider {
    */
   async getUserInfo(accessToken: string): Promise<User> {
     const [userResponse, emailResponse] = await Promise.all([
-      fetch(GITHUB_URLS.USER, {
+      fetch(OAUTH_URLS.GITHUB_USER, {
         headers: { Authorization: `Bearer ${accessToken}` },
       }),
-      fetch(GITHUB_URLS.USER_EMAILS, {
+      fetch(OAUTH_URLS.GITHUB_USER_EMAILS, {
         headers: { Authorization: `Bearer ${accessToken}` },
       }),
     ]);

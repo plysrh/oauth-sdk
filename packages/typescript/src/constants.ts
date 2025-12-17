@@ -1,13 +1,11 @@
-export const GITHUB_URLS = {
-  AUTHORIZE: 'https://github.com/login/oauth/authorize',
-  TOKEN: 'https://github.com/login/oauth/access_token',
-  USER: 'https://api.github.com/user',
-  USER_EMAILS: 'https://api.github.com/user/emails',
-} as const;
-export const GOOGLE_URLS = {
-  AUTHORIZE: 'https://accounts.google.com/o/oauth2/v2/auth',
-  TOKEN: 'https://oauth2.googleapis.com/token',
-  USER_INFO: 'https://www.googleapis.com/oauth2/v2/userinfo',
+export const OAUTH_URLS = {
+  GITHUB_AUTHORIZE: 'https://github.com/login/oauth/authorize',
+  GITHUB_TOKEN: 'https://github.com/login/oauth/access_token',
+  GITHUB_USER: 'https://api.github.com/user',
+  GITHUB_USER_EMAILS: 'https://api.github.com/user/emails',
+  GOOGLE_AUTHORIZE: 'https://accounts.google.com/o/oauth2/v2/auth',
+  GOOGLE_TOKEN: 'https://oauth2.googleapis.com/token',
+  GOOGLE_USER_INFO: 'https://www.googleapis.com/oauth2/v2/userinfo',
 } as const;
 export const DEFAULT_REDIRECT_URI = 'http://localhost:5173/oauth/callback';
 export const SCOPES = {

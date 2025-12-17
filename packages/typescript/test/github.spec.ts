@@ -1,6 +1,7 @@
 import { describe, it, expect, vi, beforeEach } from 'vitest';
 import { GitHubProvider } from '../src/modules/github';
-import { MOCK_CONFIG, URLS, MOCK_RESPONSES, MOCK_TOKENS } from './utils.spec';
+import { OAUTH_URLS } from '../src/constants';
+import { MOCK_CONFIG, MOCK_RESPONSES, MOCK_TOKENS } from './constants';
 
 describe('GitHubProvider', () => {
   let provider: GitHubProvider;
@@ -16,7 +17,7 @@ describe('GitHubProvider', () => {
   describe('getLoginUrl', () => {
     it('should generate correct login URL', () => {
       const url = provider.getLoginUrl();
-      expect(url).toContain(URLS.GITHUB_AUTHORIZE);
+      expect(url).toContain(OAUTH_URLS.GITHUB_AUTHORIZE);
       expect(url).toContain(`client_id=${MOCK_CONFIG.GITHUB.CLIENT_ID}`);
       expect(url).toContain('scope=user%3Aemail');
     });
@@ -36,7 +37,7 @@ describe('GitHubProvider', () => {
       const result = await provider.exchangeCodeForToken(MOCK_TOKENS.AUTH_CODE);
 
       expect(fetch).toHaveBeenCalledWith(
-        URLS.GITHUB_TOKEN,
+        OAUTH_URLS.GITHUB_TOKEN,
         expect.objectContaining({
           method: 'POST',
           headers: expect.objectContaining({

@@ -1,6 +1,7 @@
 import { describe, it, expect, vi, beforeEach } from 'vitest';
 import { GoogleProvider } from '../src/modules/google';
-import { MOCK_CONFIG, URLS, MOCK_RESPONSES, MOCK_TOKENS } from './utils.spec';
+import { OAUTH_URLS } from '../src/constants';
+import { MOCK_CONFIG, MOCK_RESPONSES, MOCK_TOKENS } from './constants';
 
 describe('GoogleProvider', () => {
   let provider: GoogleProvider;
@@ -17,7 +18,7 @@ describe('GoogleProvider', () => {
     it('should generate correct login URL', () => {
       const url = provider.getLoginUrl();
 
-      expect(url).toContain(URLS.GOOGLE_AUTHORIZE);
+      expect(url).toContain(OAUTH_URLS.GOOGLE_AUTHORIZE);
       expect(url).toContain(`client_id=${MOCK_CONFIG.GOOGLE.CLIENT_ID}`);
       expect(url).toContain('scope=openid+email+profile');
       expect(url).toContain('response_type=code');
@@ -39,7 +40,7 @@ describe('GoogleProvider', () => {
       const result = await provider.exchangeCodeForToken(MOCK_TOKENS.AUTH_CODE);
 
       expect(fetch).toHaveBeenCalledWith(
-        URLS.GOOGLE_TOKEN,
+        OAUTH_URLS.GOOGLE_TOKEN,
         expect.objectContaining({
           method: 'POST',
           headers: expect.objectContaining({
@@ -66,7 +67,7 @@ describe('GoogleProvider', () => {
       const result = await provider.getUserInfo(MOCK_TOKENS.ACCESS_TOKEN);
 
       expect(fetch).toHaveBeenCalledWith(
-        URLS.GOOGLE_USER_INFO,
+        OAUTH_URLS.GOOGLE_USER_INFO,
         expect.objectContaining({
           headers: { Authorization: `Bearer ${MOCK_TOKENS.ACCESS_TOKEN}` },
         }),

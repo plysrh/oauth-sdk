@@ -1,31 +1,31 @@
-# AuthFlow SDK
+# OAuth SDK
 
-A unified authentication SDK supporting multiple OAuth providers with a consistent API across different programming languages.
+A unified OAuth authentication SDK supporting multiple providers with a consistent API across different programming languages.
 
-## 🚀 Features
+## Features
 
-- 🔐 **Unified API** for multiple OAuth providers
-- 🌐 **Zero dependencies** - uses native fetch API
-- 📱 **Multiple flows** - web, API, and CLI support
-- 🔒 **Type-safe** - full TypeScript support
-- ⚡ **Lightweight** - minimal bundle size
-- 🌍 **Multi-language** - consistent API across languages
+- **Unified API** for multiple OAuth providers
+- **Zero dependencies** - uses native fetch API
+- **Multiple flows** - web, API, and CLI support
+- **Type-safe** - full TypeScript support
+- **Lightweight** - minimal bundle size
+- **Multi-language** - consistent API across languages
 
 ## 🔑 Supported Providers
 
-- ✅ **GitHub OAuth** - Complete OAuth2 flow
-- ✅ **Google OAuth2** - OpenID Connect support
-- 🔄 **More providers** - Coming soon...
+- **GitHub OAuth** - Complete OAuth2 flow
+- **Google OAuth2** - OpenID Connect support
+- **More providers** - Coming soon...
 
 ## 📦 Packages
 
 | Language | Package | Status | Installation |
 |----------|---------|--------|--------------|
-| **TypeScript** | [`@plysrh88/authflow`](./packages/typescript) | ✅ **Published** | `npm install @plysrh88/authflow` | [`Docs`](./packages/typescript) |
-| **Elixir** | [`authflow_elixir`](./packages/elixir) | 🔄 **Planned** | Coming soon | Docs |
-| **Rust** | [`authflow-rust`](./packages/rust) | 🔄 **Planned** | Coming soon | Docs |
-| **Go** | [`authflow-go`](./packages/golang) | 🔄 **Planned** | Coming soon | Docs |
+| **TypeScript** | [`@plysrh88/oauth-sdk`](./packages/typescript) | ✅ **Published** | `npm install @plysrh88/oauth-sdk` | [`Docs`](./packages/typescript) |
+| **Elixir** | [`oauth_sdk_elixir`](./packages/elixir) | 🔄 **Planned** | Coming soon | Docs |
+| **Rust** | [`oauth-sdk-rust`](./packages/rust) | 🔄 **Planned** | Coming soon | Docs |
+| **Go** | [`oauth-sdk-go`](./packages/golang) | 🔄 **Planned** | Coming soon | Docs |
 
-## 🎯 Demo
+## Demos
 
-See the [`demo/`](./demo) directory for a complete React implementation example.
+- See the typescript demo implementation ['here'](./demos/typescript/) and a full React runing ['here'](https://oauth-demo-typescript.vercel.app/).

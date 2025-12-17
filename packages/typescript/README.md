@@ -1,6 +1,6 @@
-# @plysrh88/authflow
+# @plysrh88/oauth-sdk
 
-[![npm version](https://badge.fury.io/js/@plysrh88%2Fauthflow.svg)](https://www.npmjs.com/package/@plysrh88/authflow)
+[![npm version](https://badge.fury.io/js/@plysrh88%2Foauth-sdk.svg)](https://www.npmjs.com/package/@plysrh88/oauth-sdk)
 [![TypeScript](https://img.shields.io/badge/TypeScript-Ready-blue.svg)](https://www.typescriptlang.org/)
 
 A unified authentication SDK for TypeScript/JavaScript supporting multiple OAuth providers.
@@ -8,22 +8,24 @@ A unified authentication SDK for TypeScript/JavaScript supporting multiple OAuth
 ## Installation
 
 ```bash
-npm install @plysrh88/authflow
+npm install @plysrh88/oauth-sdk
 ```
 
 ## Quick Start
 
 ```typescript
-import { AuthFlow } from '@plysrh88/authflow'
+import { Auth } from '@plysrh88/oauth-sdk';
 
-const auth = new AuthFlow({
+const auth = new Auth({
   github: {
     clientId: 'your-github-client-id',
-    clientSecret: 'your-github-client-secret'
+    clientSecret: 'your-github-client-secret',
+    redirectUri: 'your-github-redirect-uri',
   },
   google: {
     clientId: 'your-google-client-id', 
-    clientSecret: 'your-google-client-secret'
+    clientSecret: 'your-google-client-secret',
+    redirectUri: 'your-google-redirect-uri',
   }
 })
 // Get login URL
@@ -36,15 +38,15 @@ console.log(user) // { id, email, name, avatar, provider }
 
 ## Features
 
-- 🔐 **Unified API** for multiple OAuth providers
-- 🔄 **Automatic token handling** and user data retrieval
-- 📱 **Multiple flows** - web, API, CLI support
-- 🌍 **Zero dependencies** - uses native fetch
-- ⚡ **TypeScript first** with full type safety
-- 🏗️ **Modular architecture** with provider-specific implementations
-- 🔧 **Configurable** with environment variables support
-- 📚 **Comprehensive JSDoc documentation**
-- ✅ **Fully tested** with unit and integration tests
+- **Unified API** for multiple OAuth providers
+- **Automatic token handling** and user data retrieval
+- **Backend focused** - designed for server-side usage
+- **Zero dependencies** - uses native fetch
+- **TypeScript first** with full type safety
+- **Modular architecture** with provider-specific implementations
+- **Configurable** with environment variables support
+- **Comprehensive JSDoc documentation**
+- **Fully tested** with unit and integration tests
 
 ## Supported Providers
 
@@ -54,10 +56,10 @@ console.log(user) // { id, email, name, avatar, provider }
 
 ## API Reference
 
-### AuthFlow
+### Auth
 
 ```typescript
-const auth = new AuthFlow(config: AuthConfig)
+const auth = new Auth(config: AuthConfig)
 ```
 
 ### Methods
@@ -99,38 +101,68 @@ interface GoogleConfig {
 
 ## Examples
 
-### React Integration
+### Backend API Integration
 
 ```typescript
-import { useState, useEffect } from 'react';
-import { AuthFlow } from '@plysrh88/authflow';
+import { Auth } from '@plysrh88/oauth-sdk';
 
-function LoginComponent() {
-  const [auth] = useState(() => new AuthFlow({
-    github: {
-      clientId: process.env.VITE_GITHUB_CLIENT_ID!,
-      clientSecret: process.env.VITE_GITHUB_CLIENT_SECRET!,
-      redirectUri: process.env.VITE_GITHUB_REDIRECT_URI,
-    }
-  }))
+const auth = new Auth({
+  github: {
+    clientId: process.env.GITHUB_CLIENT_ID!,
+    clientSecret: process.env.GITHUB_CLIENT_SECRET!,
+    redirectUri: 'http://localhost/oauth/callback',
+  },
+});
 
-  const handleLogin = () => {
-    const url = auth.getLoginUrl('github');
+app.post('/oauth/login', (request, response) => {
+  const { provider } = request.body;
+  const loginUrl = auth.getLoginUrl(provider);
 
-    window.location.href = url;
+  response.json({ loginUrl });
+});
+
+app.post('/oauth/callback', async (request, response) => {
+  const { provider, code } = request.body;
+  
+  try {
+    const user = await auth.handleCallback(provider, code);
+
+    response.json({ user });
+  } catch (error) {
+    response.status(400).json({ error: 'Authentication failed' });
   }
+});
+```
 
-  useEffect(() => {
-    const params = new URLSearchParams(window.location.search);
-    const code = params.get('code');
-    
-    if (code) {
-      auth.handleCallback('github', code)
-        .then(user => console.log('Logged in:', user))
-        .catch(err => console.error('Login failed:', err));
-    }
-  }, []);
+### Serverless Function (Vercel)
 
-  return <button onClick={handleLogin}>Login with GitHub</button>;
+```typescript
+import type { VercelRequest, VercelResponse } from '@vercel/node';
+import { Auth } from '@plysrh88/oauth-sdk';
+
+const auth = new Auth({
+  github: {
+    clientId: process.env.GITHUB_CLIENT_ID!,
+    clientSecret: process.env.GITHUB_CLIENT_SECRET!,
+    redirectUri: 'http://localhost/oauth/callback',
+  }
+});
+
+export default async function handler(request: VercelRequest, response: VercelResponse) {
+  const { provider, code } = request.body;
+  
+  if (!code) {
+    const loginUrl = auth.getLoginUrl(provider);
+
+    return response.json({ loginUrl });
+  }
+  
+  try {
+    const user = await auth.handleCallback(provider, code);
+
+    response.json({ user });
+  } catch (error) {
+    response.status(400).json({ error: 'Authentication failed' });
+  }
 }
 ```
