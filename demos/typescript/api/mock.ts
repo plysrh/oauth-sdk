@@ -1,5 +1,5 @@
 import { createServer } from 'http';
-import { MOCK_USER } from './constants';
+import { MOCK_USER } from './constants.js';
 
 async function handler(request: { method: string; body: { provider: string; code: string } }) {
   if (request.method !== 'POST') {

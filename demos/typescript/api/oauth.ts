@@ -1,6 +1,6 @@
 import type { VercelRequest, VercelResponse } from '@vercel/node';
 // import { Auth } from '@plysrh88/oauth-sdk';
-// import { ENV_VARS } from './constants';
+// import { ENV_VARS } from './constants.js';
 
 // const auth = new Auth({
 //   github: {
