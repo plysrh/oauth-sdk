@@ -7,13 +7,13 @@ export default async function handler(request: VercelRequest, response: VercelRe
     return response.status(405).json({ error: 'Method not allowed' });
   }
 
-  const { body } = request;
+  const { provider, code } = request.body;
 
   console.log('FUNCTION_ENV_VARS', ENV_VARS);
-  console.log('FUNCTION_REQUEST_BODY', body));
-  console.log('FUNCTION_REQUEST_PROVIDER', body.provider);
+  console.log('FUNCTION_REQUEST_BODY', JSON.stringify(request.body));
+  console.log('FUNCTION_REQUEST_PROVIDER', provider);
 
-  if (!body.provider) {
+  if (!provider) {
     return response.status(400).json({ error: 'Missing provider' });
   }
 
@@ -32,14 +32,14 @@ export default async function handler(request: VercelRequest, response: VercelRe
     });
 
     // If no code, return login URL for initial OAuth flow
-    if (!body.code) {
-      const loginUrl = auth.getLoginUrl(body.provider);
+    if (!code) {
+      const loginUrl = auth.getLoginUrl(provider);
 
       return response.status(200).json({ loginUrl });
     }
 
     // If code exists, handle OAuth callback
-    const user = await auth.handleCallback(body.provider, body.code);
+    const user = await auth.handleCallback(provider, code);
 
     response.status(200).json({ user });
   } catch (error) {
