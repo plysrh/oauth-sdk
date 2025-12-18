@@ -1,5 +1,5 @@
-import type { GoogleConfig, User, TokenResponse, AuthProvider } from '../types';
-import { OAUTH_URLS, DEFAULT_REDIRECT_URI, SCOPES, TOKEN_TYPES, GRANT_TYPES, RESPONSE_TYPES } from '../constants';
+import type { GoogleConfig, User, TokenResponse, AuthProvider } from '../types.js';
+import { OAUTH_URLS, DEFAULT_REDIRECT_URI, SCOPES, TOKEN_TYPES, GRANT_TYPES, RESPONSE_TYPES } from '../constants.js';
 
 /**
  * Google OAuth provider implementation.

@@ -1,6 +1,6 @@
 {
   "name": "@plysrh88/oauth-sdk",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "description": "Unified authentication SDK for TypeScript/JavaScript",
   "type": "module",
   "main": "dist/index.js",
@@ -18,7 +18,7 @@
     "README.md"
   ],
   "scripts": {
-    "build": "tsc && tsc-alias -p tsconfig.json && tsc -p tsconfig.cjs.json",
+    "build": "tsc && tsc -p tsconfig.cjs.json",
     "dev": "tsc --watch",
     "test": "vitest run",
     "lint": "eslint .",
@@ -55,7 +55,6 @@
     "@types/node": "^20.0.0",
     "eslint": "^9.39.1",
     "globals": "^16.5.0",
-    "tsc-alias": "^1.8.16",
     "typescript": "^5.0.0",
     "typescript-eslint": "^8.46.4",
     "vitest": "^1.0.0"

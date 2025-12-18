@@ -1,5 +1,5 @@
-import type { GitHubConfig, User, TokenResponse, AuthProvider } from '../types';
-import { OAUTH_URLS, DEFAULT_REDIRECT_URI, SCOPES, TOKEN_TYPES } from '../constants';
+import type { GitHubConfig, User, TokenResponse, AuthProvider } from '../types.js';
+import { OAUTH_URLS, DEFAULT_REDIRECT_URI, SCOPES, TOKEN_TYPES } from '../constants.js';
 
 /**
  * GitHub OAuth provider implementation.

@@ -1,6 +1,6 @@
-import type { AuthConfig, Provider, User, AuthProvider } from './types';
-import { GitHubProvider } from './modules/github';
-import { GoogleProvider } from './modules/google';
+import type { AuthConfig, Provider, User, AuthProvider } from './types.js';
+import { GitHubProvider } from './modules/github.js';
+import { GoogleProvider } from './modules/google.js';
 
 /**
  * Main Auth class for handling multi-provider OAuth authentication.

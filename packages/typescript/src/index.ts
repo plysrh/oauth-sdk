@@ -1,4 +1,4 @@
-export { Auth } from './auth';
-export * from './types';
-export { GitHubProvider } from './modules/github';
-export { GoogleProvider } from './modules/google';
+export { Auth } from './auth.js';
+export * from './types.js';
+export { GitHubProvider } from './modules/github.js';
+export { GoogleProvider } from './modules/google.js';
