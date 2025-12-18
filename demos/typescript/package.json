@@ -3,7 +3,7 @@
   "private": true,
   "version": "1.0.0",
   "engines": {
-    "node": "24.x"
+    "node": "22.x"
   },
   "type": "module",
   "scripts": {
@@ -17,8 +17,8 @@
     "test:e2e": "playwright test",
     "test:e2e:mock": "node -r ts-node/register api/mock.ts",
     "test:e2e:ui": "playwright test --ui",
-    "vercel:build": "vercel build",
-    "vercel:dev": "vercel dev"
+    "vercel:build": "vercel build --cwd ../../",
+    "vercel:dev": "vercel dev --cwd ../../"
   },
   "dependencies": {
     "@plysrh88/oauth-sdk": "^1.0.0",

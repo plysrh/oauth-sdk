@@ -115,3 +115,5 @@ test-results.xml
 # NPM tokens and sensitive files
 .npmrc
 **/.npmrc
+.vercel
+.env*.local
