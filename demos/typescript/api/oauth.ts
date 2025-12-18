@@ -10,7 +10,8 @@ export default async function handler(request: VercelRequest, response: VercelRe
   const { provider, code } = request.body;
 
   console.log('FUNCTION_ENV_VARS', ENV_VARS);
-  console.log('FUNCTION_REQUEST', request.body, request.query, request.cookies);
+  console.log('FUNCTION_REQUEST_BODY', JSON.stringify(request.body));
+  console.log('FUNCTION_REQUEST_PROVIDER', request.body.provider);
 
   if (!provider) {
     return response.status(400).json({ error: 'Missing provider' });
