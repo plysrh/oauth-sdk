@@ -9,13 +9,12 @@ const ENV_VARS = {
 } as const;
 const URLS = {
   FRONTEND: 'http://localhost:5173',
-  BACKEND: 'http://localhost:3000/oauth/backend',
-  MOCK_BACKEND: 'http://localhost:3000/oauth/backend',
+  BACKEND: 'http://localhost:3000/api/oauth',
+  MOCK_BACKEND: 'http://localhost:3000/api/oauth',
 } as const;
 const COMMANDS = {
-  DEV: 'npm run dev',
-  BACKEND: 'npm run backend',
-  MOCK_BACKEND: 'npm run backend:mock',
+  DEV: 'npm run vercel:dev',
+  MOCK_BACKEND: 'npm run test:e2e:mock',
 } as const;
 
 export default defineConfig({
@@ -43,7 +42,7 @@ export default defineConfig({
       reuseExistingServer: !ENV_VARS.CI,
     },
     {
-      command: ENV_VARS.USE_MOCK_BACKEND ? COMMANDS.MOCK_BACKEND : COMMANDS.BACKEND,
+      command: ENV_VARS.USE_MOCK_BACKEND ? COMMANDS.MOCK_BACKEND : COMMANDS.DEV,
       url: ENV_VARS.USE_MOCK_BACKEND ? URLS.MOCK_BACKEND : URLS.BACKEND,
       reuseExistingServer: !ENV_VARS.CI,
     },

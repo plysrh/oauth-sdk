@@ -2,6 +2,12 @@
   "$schema": "https://openapi.vercel.sh/vercel.json",
   "buildCommand": "npm run build",
   "devCommand": "npm run dev",
+  "functions": {
+    "api/oauth.ts": {
+      "runtime": "@vercel/node@22.x",
+      "excludeFiles": "api/mock.ts"
+    }
+  },
   "rewrites": [
     {
       "source": "/((?!api).*)",

@@ -1,5 +1,4 @@
 import { createServer } from 'http';
-import { MOCK_USER } from './constants.js';
 
 async function handler(request: { method: string; body: { provider: string; code: string } }) {
   if (request.method !== 'POST') {
@@ -20,11 +19,11 @@ async function handler(request: { method: string; body: { provider: string; code
     status: 200,
     json: {
       user: {
-        id: MOCK_USER.ID,
-        name: MOCK_USER.NAME,
-        email: MOCK_USER.EMAIL,
-        avatar: MOCK_USER.AVATAR,
-        provider: MOCK_USER.PROVIDER,
+        id: 123,
+        name: 'Test User',
+        email: 'test@example.com',
+        avatar: 'https://avatar.url',
+        provider: 'github',
       },
     },
   };
