@@ -7,11 +7,11 @@ export default async function handler(request: VercelRequest, response: VercelRe
     return response.status(405).json({ error: 'Method not allowed' });
   }
 
-  const { provider, code } = request.body;
+  const { body: { provider, code } } = request;
 
   console.log('FUNCTION_ENV_VARS', ENV_VARS);
   console.log('FUNCTION_REQUEST_BODY', JSON.stringify(request.body));
-  console.log('FUNCTION_REQUEST_PROVIDER', request.body.provider);
+  console.log('FUNCTION_REQUEST_PROVIDER', provider);
 
   if (!provider) {
     return response.status(400).json({ error: 'Missing provider' });
