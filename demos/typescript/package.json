@@ -21,7 +21,7 @@
     "vercel:dev": "vercel dev --cwd ../../"
   },
   "dependencies": {
-    "@plysrh88/oauth-sdk": "^1.0.0",
+    "@plysrh88/oauth-sdk": "^1.0.1",
     "@tailwindcss/vite": "^4.1.18",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
