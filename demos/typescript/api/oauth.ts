@@ -9,6 +9,9 @@ export default async function handler(request: VercelRequest, response: VercelRe
 
   const { provider, code } = request.body;
 
+  console.log('FUNCTION_REQUEST', JSON.stringify(request));
+  console.log('FUNCTION_ENV_VARS', ENV_VARS);
+
   if (!provider) {
     return response.status(400).json({ error: 'Missing provider' });
   }
