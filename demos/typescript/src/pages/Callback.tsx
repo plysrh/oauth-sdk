@@ -1,6 +1,6 @@
 import { useEffect } from 'react';
 import { useNavigate, useSearchParams } from 'react-router-dom';
-import { ROUTES, BACKEND_ENDPOINTS } from '../constants';
+import { ROUTES, ENDPOINTS } from '../constants';
 
 type Provider = 'github' | 'google';
 
@@ -20,7 +20,7 @@ export default function Callback() {
       }
 
       try {
-        const response = await fetch(BACKEND_ENDPOINTS.OAUTH, {
+        const response = await fetch(ENDPOINTS.OAUTH, {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify({ provider, code }),

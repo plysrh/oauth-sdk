@@ -5,6 +5,6 @@ export const ROUTES = {
   NOT_FOUND: '*',
   CALLBACK: '/oauth/callback',
 } as const;
-export const BACKEND_ENDPOINTS = {
-  OAUTH: '/api/oauth',
+export const ENDPOINTS = {
+  OAUTH: import.meta.env.VITE_OAUTH_ENDPOINT || '/api/oauth',
 } as const;

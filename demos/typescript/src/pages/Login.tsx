@@ -1,18 +1,18 @@
-import { BACKEND_ENDPOINTS } from '../constants';
+import { ENDPOINTS } from '../constants';
 
 type Provider = 'github' | 'google';
 
 export default function Login() {
   const handleLogin = (provider: Provider) => async () => {
     try {
-      const response = await fetch(BACKEND_ENDPOINTS.OAUTH, {
+      const response = await fetch(ENDPOINTS.OAUTH, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ provider })
       });
 
       const data = await response.json();
-      
+
       if (data.loginUrl) {
         window.location.href = data.loginUrl;
       }
@@ -25,8 +25,8 @@ export default function Login() {
     <div className="min-h-screen bg-gray-50 flex items-center justify-center">
       <div className="max-w-md w-full space-y-8 p-8">
         <div className="text-center">
-          <h1 className="text-3xl font-bold text-gray-900 mb-2">OAuth SDK</h1>
-          <p className="text-gray-600">Multi-provider authentication demo</p>
+          <h1 className="text-3xl font-bold text-gray-900 mb-2">OAuth SDK TypeScript Demo</h1>
+          <p className="text-gray-600">Multi-provider authentication</p>
         </div>
 
         <div className="space-y-4">
@@ -55,7 +55,6 @@ export default function Login() {
         </div>
 
         <div className="text-center text-sm text-gray-500">
-          <p>OAuth SDK implementation example</p>
           <p className="mt-1">TypeScript + React + Tailwind CSS</p>
         </div>
       </div>

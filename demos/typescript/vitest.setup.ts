@@ -1,7 +1,7 @@
 import { vi, beforeAll, afterAll, afterEach } from 'vitest';
 import { cleanup } from '@testing-library/react';
 import '@testing-library/jest-dom/vitest';
-import { BACKEND_ENDPOINTS } from './src/constants';
+import { ENDPOINTS } from './src/constants';
 
 const originalLocation = window.location;
 
@@ -21,7 +21,7 @@ beforeAll(() => {
   globalThis.fetch = vi.fn().mockImplementation(async (url: string, options: RequestInit = {}) => {
     const method = options.method || 'GET';
 
-    if (url.includes(BACKEND_ENDPOINTS.OAUTH)) {
+    if (url.includes(ENDPOINTS.OAUTH)) {
       if (method === 'POST') {
         const body = options.body ? JSON.parse(options.body as string) : {};
 

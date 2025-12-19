@@ -83,7 +83,7 @@ export class GitHubProvider implements AuthProvider {
     ]);
     const userData = await userResponse.json();
     const emailData = await emailResponse.json();
-    const primaryEmail = emailData.find((email: { email: string; primary: boolean }) => email.primary)?.email;
+    const primaryEmail = emailData?.find((email: { email: string; primary: boolean }) => email.primary)?.email;
 
     return {
       id: userData.id.toString(),

@@ -2,7 +2,7 @@ import { describe, it, expect } from 'vitest';
 import { render, screen, waitFor } from '@testing-library/react';
 import type { ReactElement } from 'react';
 import { MemoryRouter } from 'react-router-dom';
-import { ROUTES } from '../../constants';
+import { ROUTES, ENDPOINTS } from '../../constants';
 import Callback from '../Callback';
 
 function renderWithRouter(component: ReactElement, initialEntries: string[]) {
@@ -25,7 +25,7 @@ describe('Callback Component', () => {
 
     waitFor(() => {
       expect(globalThis.fetch).toHaveBeenCalledWith(
-        '/api/oauth',
+        ENDPOINTS.OAUTH,
         {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },

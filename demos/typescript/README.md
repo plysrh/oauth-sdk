@@ -80,9 +80,7 @@ Visit: http://localhost:5173/
 
 The `vercel.json` file includes:
 
-- **Framework detection**: Vite
 - **SPA routing**: Rewrites for React Router
-- **Build optimization**: Automatic configuration
 
 ## Features
 
